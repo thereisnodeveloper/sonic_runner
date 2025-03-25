@@ -13,7 +13,9 @@ export const k = kaplay(
         keyboard:["Space"],
         mouse:"left"
       }
-    }
+    },
+    debugKey:"d",
+    debug: true
   }
 )
 
