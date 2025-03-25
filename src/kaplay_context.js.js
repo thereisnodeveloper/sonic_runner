@@ -7,7 +7,14 @@ export const k = kaplay(
     letterbox: true,
     background:[],
     global:false,
-    touchToMouse:true
+    touchToMouse:true,
+    buttons:{
+      jump:{
+        keyboard:["Space"],
+        mouse:"left"
+      }
+    }
   }
 )
+
 
