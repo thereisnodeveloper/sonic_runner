@@ -24,8 +24,18 @@ export default function mainMenu() {
     k.add([k.sprite('platforms'), k.pos(platformWidth*2, 900)], k.scale(8,2)),
 
   ];
+  const defaultAddComp = [
+    k.anchor("center")
+  ];
+
+  //initiate
+  k.add([k.text("SONIC RING RUN",{font:"mania",size:96}),k.pos(k.center().x,200),k.anchor("center")])
+  k.add([...defaultAddComp,
+    k.text("Press Space to play"),
+    k.pos(k.center().x,400)
+  ])
   makeSonic(k.vec2(300, 720))
-  k.setGravity(1000)
+  
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
