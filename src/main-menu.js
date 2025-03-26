@@ -1,4 +1,6 @@
 import { k } from './kaplay_context.js';
+import { makeSonic } from './sonic.js';
+
 
 export default function mainMenu() {
 
@@ -22,6 +24,8 @@ export default function mainMenu() {
     k.add([k.sprite('platforms'), k.pos(platformWidth*2, 900)], k.scale(8,2)),
 
   ];
+  makeSonic(k.vec2(300, 720))
+  k.setGravity(1000)
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
