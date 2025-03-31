@@ -1,5 +1,6 @@
 import { k } from './kaplay_context.js';
 import mainMenu from './main-menu.js'
+import game from './game.js';
 // k.add([])
 
 k.loadSprite('chemical-bg', '../public/graphics/chemical-bg.png');
@@ -41,7 +42,7 @@ k.loadSound("ring","sounds/Ring.wav")
 
 
 k.scene("main-menu",mainMenu)
-k.scene("game",()=>{})
+k.scene("game",game)
 k.scene("game-over",()=>{})
 
 k.go("main-menu")
