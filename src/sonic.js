@@ -16,7 +16,7 @@ export function makeSonic(pos) {
             this.play('jump');
             this.jump();
             k.play("jump",{volume: 0.35});
-            game.bg
+            
           }
         });
       },
