@@ -47,12 +47,12 @@ export default function game() {
     }
   });
 
-  const spawnEnemy = (waitTimeRange, creatorFunction) => {
+  const spawnEnemy = (waitTimeRange, creatorFunction, moveSpeed) => {
     const [min, max] = waitTimeRange;
     const enemy = creatorFunction();
     enemy.onUpdate(() => {
       if (gameSpeed < 3000) {
-        enemy.move(-(gameSpeed + 300), 0);
+        enemy.move(moveSpeed, 0);
       }
     });
     enemy.onExitScreen(() => {
@@ -60,11 +60,11 @@ export default function game() {
     });
     const waitTime = k.rand(min, max);
 
-    k.wait(waitTime, spawnEnemy.bind(null, waitTimeRange, creatorFunction));
+    k.wait(waitTime, spawnEnemy.bind(null, waitTimeRange, creatorFunction, moveSpeed));
   };
 
-  spawnEnemy([1, 1.5], makeMotobug.bind(null, k.vec2(1920, 773)));
-  spawnEnemy([0.5, 3], makeRing.bind(null, k.vec2(1920, 773)));
+  spawnEnemy([1, 1.5], makeMotobug.bind(null, k.vec2(1920, 773)),-(gameSpeed + 300));
+  spawnEnemy([0.5, 3], makeRing.bind(null, k.vec2(1920, 773)),-(gameSpeed));
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
