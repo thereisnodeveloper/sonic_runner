@@ -1,4 +1,4 @@
-import { k } from './kaplay_context.js';
+import k from './kaplay_context.js';
 import { makeSonic } from './sonic.js';
 
 

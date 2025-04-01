@@ -1,4 +1,4 @@
-import { k } from './kaplay_context.js';
+import  k  from './kaplay_context.js';
 import mainMenu from './main-menu.js'
 import game from './game.js';
 // k.add([])

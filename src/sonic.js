@@ -1,4 +1,5 @@
-import { k } from './kaplay_context.js';
+import k  from './kaplay_context.js';
+import game from './game.js';
 
 export function makeSonic(pos) {
   return k.add([
@@ -15,12 +16,14 @@ export function makeSonic(pos) {
             this.play('jump');
             this.jump();
             k.play("jump",{volume: 0.35});
+            game.bg
           }
         });
       },
       setEvents(){
         this.onGround(()=>{
           this.play("run")
+          
         })
       }
     },

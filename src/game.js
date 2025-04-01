@@ -1,4 +1,5 @@
-import { k } from './kaplay_context.js';
+import k from './kaplay_context.js';
+import { makeMotobug } from './motobug.js';
 import { makeSonic } from './sonic.js';
 export default function game() {
   k.setGravity(3100);
@@ -33,7 +34,16 @@ export default function game() {
   const sonic = makeSonic(k.vec2(200,700))
   sonic.setControls()
   sonic.setEvents()
-  
+
+  const spawnMotoBug = () =>{
+    const motobug = makeMotobug(k.vec2(1920,773))
+    motobug.onUpdate(()=>{
+      if (gameSpeed< 3000){
+        motobug.move(-(gameSpeed+300))
+      }
+    })
+  }
+
 
 
 
