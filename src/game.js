@@ -41,13 +41,14 @@ export default function game() {
       sonic.play('jump');
       sonic.jump();
       //TODO
+    } else {
+      k.play('hurt', { volume: 0.5 });
+      k.go('game-over');
     }
-    k.play('hurt', { volume: 0.5 });
-    k.go('game-over'); 
   });
 
   const spawnEnemy = (waitTimeRange, creatorFunction) => {
-    const [min, max] = waitTimeRange
+    const [min, max] = waitTimeRange;
     const enemy = creatorFunction();
     enemy.onUpdate(() => {
       if (gameSpeed < 3000) {
@@ -57,14 +58,13 @@ export default function game() {
     enemy.onExitScreen(() => {
       if (enemy.pos.x < 0) k.destroy(enemy);
     });
-    const waitTime = k.rand(min,max);
-    
-    k.wait(waitTime, spawnEnemy.bind(null, waitTimeRange,creatorFunction) );
-  };
-  
-  spawnEnemy([1,1.5], makeMotobug.bind(null,k.vec2(1920, 773)))
-  spawnEnemy([0.5,3], makeRing.bind(null,k.vec2(1920, 773)))
+    const waitTime = k.rand(min, max);
 
+    k.wait(waitTime, spawnEnemy.bind(null, waitTimeRange, creatorFunction));
+  };
+
+  spawnEnemy([1, 1.5], makeMotobug.bind(null, k.vec2(1920, 773)));
+  spawnEnemy([0.5, 3], makeRing.bind(null, k.vec2(1920, 773)));
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
