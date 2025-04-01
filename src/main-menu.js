@@ -33,10 +33,11 @@ export default function mainMenu() {
     k.text("Press Space to play"),
     k.pos(k.center().x,400)
   ])
-  makeSonic(k.vec2(300, 720))
-  
+  makeSonic(k.vec2(300, 700))
+                                                    
 
   k.onUpdate(() => {
+  
     if (bgPieces[1].pos.x < 0) {
       bgPieces[0].moveTo(bgPieces[1].pos.x + bgPiecewidth * 2, 0);
       bgPieces.push(bgPieces.shift());
