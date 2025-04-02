@@ -6,6 +6,9 @@ export default function game() {
   let score = 0;
   let scoreMultiplier = 1;
 
+  const citySfx = k.play("city",{volume: 0.05, loop:true})
+  
+
   k.setGravity(3100);
   let gameSpeed = 300;
   k.loop(1, () => {
@@ -52,7 +55,7 @@ export default function game() {
       //TODO
     } else {
       k.play('hurt', { volume: 0.5 });
-      k.go('game-over',score);
+      k.go('game-over',score,citySfx);
       if(score > k.getData('best-score'))
       k.setData('best-score',score)
     }
