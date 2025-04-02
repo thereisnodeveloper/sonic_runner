@@ -4,6 +4,8 @@ import { makeRing } from './ring.js';
 import { makeSonic } from './sonic.js';
 export default function game() {
   let score = 0
+  let scoreMultiplier = 1
+
   k.setGravity(3100);
   let gameSpeed = 300;
   k.loop(1, () => {
@@ -46,6 +48,9 @@ export default function game() {
       k.destroy(enemy);
       sonic.play('jump');
       sonic.jump();
+      score += 1 * scoreMultiplier
+      updateScore()
+      scoreMultiplier++
       //TODO
     } else {
       k.play('hurt', { volume: 0.5 });
@@ -57,13 +62,13 @@ export default function game() {
   sonic.onCollide('ring',(ring)=>{
     k.destroy(ring)
     k.play("ring",{volume:0.5})
-    score++
+    score += 2
     updateScore()
   })
 
   
   const updateScore=()=>{
-    scoreDisplay.text = `Score: ${score}`
+    scoreDisplay.text = `SCORE: ${score}`
   }
 
   const spawnEnemy = (waitTimeRange, creatorFunction, moveSpeed) => {
@@ -86,6 +91,8 @@ export default function game() {
   spawnEnemy([0.5, 3], makeRing.bind(null, k.vec2(1920, 773)),-(gameSpeed));
 
   k.onUpdate(() => {
+    if(sonic.isGrounded()) scoreMultiplier = 1
+
     if (bgPieces[1].pos.x < 0) {
       bgPieces[0].moveTo(bgPieces[1].pos.x + bgPiecewidth * 2, 0);
       bgPieces.push(bgPieces.shift());
