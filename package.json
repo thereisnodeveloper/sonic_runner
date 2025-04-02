@@ -1,5 +1,6 @@
 {
   "name": "sonic_runner",
+  "homepage": "https://thereisnodeveloper.github.io/sonic_runner/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +13,7 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "kaplay": "^3001.0.10"
   }
 }
