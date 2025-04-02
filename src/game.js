@@ -3,6 +3,7 @@ import { makeMotobug } from './motobug.js';
 import { makeRing } from './ring.js';
 import { makeSonic } from './sonic.js';
 export default function game() {
+  let score = 0
   k.setGravity(3100);
   let gameSpeed = 300;
   k.loop(1, () => {
@@ -30,6 +31,11 @@ export default function game() {
     k.add([k.sprite('platforms'), k.pos(platformWidth * 2, platformHeight)], k.scale(8, 2)),
   ];
 
+  const scoreDisplay= k.add([
+    k.text('SCORE: 0', {font: "mania",size:72}),
+    k.pos(20,20)
+  ])
+
   const sonic = makeSonic(k.vec2(200, 700));
   sonic.setControls();
   sonic.setEvents();
@@ -44,8 +50,21 @@ export default function game() {
     } else {
       k.play('hurt', { volume: 0.5 });
       k.go('game-over');
+      if(score > k.getData('best-score'))
+      k.setData('best-score',score)
     }
   });
+  sonic.onCollide('ring',(ring)=>{
+    k.destroy(ring)
+    k.play("ring",{volume:0.5})
+    score++
+    updateScore()
+  })
+
+  
+  const updateScore=()=>{
+    scoreDisplay.text = `Score: ${score}`
+  }
 
   const spawnEnemy = (waitTimeRange, creatorFunction, moveSpeed) => {
     const [min, max] = waitTimeRange;
